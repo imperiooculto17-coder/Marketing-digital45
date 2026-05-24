@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Digital Para Iniciantes</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:url("https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1600&q=80")
+  no-repeat center/cover;
+
+  min-height:100dvh;
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+
+  padding:0;
+  text-align:center;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  z-index:1;
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:100%;
+  min-height:100dvh;
+  padding:24px 18px 40px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  border-radius:0;
+  border:none;
+  box-shadow:none;
+}
+
+.badge{
+  background:#ff2e2e;
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  font-size:16px; /* aumentei */
+  font-weight:bold;
+  margin-bottom:16px;
+}
+
+h1{
+  font-size:36px; /* antes 32px */
+  line-height:1.2;
+  margin:0 0 14px;
+  font-weight:900;
+}
+
+p{
+  font-size:20px; /* antes 18px */
+  line-height:1.5;
+  opacity:1; /* tirei a transparência pra ficar mais nítido */
+  margin:0 0 18px;
+}
+
+.countdown{
+  background:rgba(255,0,0,.25);
+  border:2px solid rgba(255,0,0,.8); /* borda mais grossa */
+  padding:14px;
+  border-radius:14px;
+  margin:20px 0;
+  font-size:22px; /* antes 18px */
+  font-weight:900;
+}
+
+.price{
+  font-size:56px; /* antes 52px */
+  color:#00ff66;
+  margin:8px 0;
+  font-weight:900;
+  text-shadow:0 0 10px rgba(0,255,102,.4); /* brilho pra destacar */
+}
+
+.guarantee{
+  font-size:17px; /* antes 15px */
+  line-height:1.6;
+  opacity:1;
+  margin-bottom:22px;
+}
+
+button{
+  width:100%;
+  padding:20px; /* antes 18px */
+  font-size:23px; /* antes 21px */
+  background:#00ff66;
+  color:black;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  font-weight:900;
+  animation:pulse 1.5s infinite;
+  margin-bottom:26px;
+  box-shadow:0 6px 24px rgba(0,255,102,.4);
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+@keyframes pulse{
+ 0%{transform:scale(1);}
+ 50%{transform:scale(1.03);}
+ 100%{transform:scale(1);}
+}
+
+.section{
+  background:rgba(255,255,255,.08); /* deixei um pouco mais claro */
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:18px;
+  padding:20px;
+  margin:18px 0;
+  text-align:left;
+}
+
+.section h3{
+  font-size:24px; /* antes 21px */
+  margin:0 0 16px;
+  color:#00ff66;
+  text-align:center;
+  font-weight:900;
+}
+
+.benefits{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.benefits li{
+  font-size:19px; /* antes 16px */
+  line-height:1.6;
+  margin:14px 0;
+  padding-left:32px;
+  position:relative;
+}
+
+.benefits li:before{
+  content:"✅";
+  position:absolute;
+  left:0;
+  font-size:20px;
+}
+
+.testimonial{
+  background:rgba(255,255,255,.06);
+  border-left:4px solid #00ff66; /* borda mais grossa */
+  padding:16px;
+  margin:14px 0;
+  border-radius:12px;
+  font-size:18px; /* antes 15px */
+  line-height:1.6;
+  font-style:italic;
+}
+
+.faq-item{
+  margin:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  padding-bottom:12px;
+}
+
+.faq-item strong{
+  font-size:20px; /* antes 16px */
+  display:block;
+  margin-bottom:6px;
+}
+
+.faq-item p{
+  font-size:18px; /* antes 14px */
+  margin-top:0;
+  opacity:1;
+  line-height:1.5;
+}
+
+.popup{
+  position:fixed;
+  bottom:15px;
+  left:15px;
+  right:15px;
+  background:#111;
+  border:2px solid #00ff66;
+  padding:14px;
+  border-radius:14px;
+  font-size:16px; /* antes 14px */
+  z-index:999;
+  display:none;
+  max-width:320px;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+  <div class="badge">🔥 OFERTA LIMITADA</div>
+
+  <h1>Marketing Digital Para Iniciantes</h1>
+
+  <p>Aprenda do zero e comece a criar renda online com estratégias simples.</p>
+
+  <div class="countdown">
+    ⏳ Oferta termina em: <span id="timer">15:00</span>
+  </div>
+
+  <div class="price">258 MZN</div>
+  <div class="guarantee">✅ Acesso imediato | ✅ Suporte no WhatsApp | ✅ Garantia 7 dias</div>
+
+  <button onclick="pagar()">
+    🚀 QUERO COMEÇAR AGORA
+  </button>
+
+  <div class="section">
+    <h3>O que você vai aprender</h3>
+    <ul class="benefits">
+      <li>Criar sua primeira página de vendas em 1 hora</li>
+      <li>Atrair clientes no WhatsApp e Facebook sem gastar</li>
+      <li>Vender qualquer produto físico ou digital</li>
+      <li>Usar o celular para trabalhar de qualquer lugar</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>O que dizem os alunos</h3>
+    <div class="testimonial">
+      "Em 3 dias já fiz minha primeira venda de 500 MZN. Simples e direto." - João M.
+    </div>
+    <div class="testimonial">
+      "Nunca pensei que conseguiria vender online. O curso abriu minha mente." - Ana C.
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Perguntas Rápidas</h3>
+    <div class="faq">
+      <div class="faq-item">
+        <strong>Preciso saber informática?</strong>
+        <p>Não. O curso é do zero, só precisa de celular e internet.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Quando recebo o acesso?</strong>
+        <p>Na hora. Após o pagamento o link chega no teu WhatsApp.</p>
+      </div>
+      <div class="faq-item">
+        <strong>E se eu não gostar?</strong>
+        <p
